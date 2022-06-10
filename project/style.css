@@ -14,5 +14,15 @@ main {
 }
 
 .game-panel {
+  margin: 100px;
+  width: auto;
+  height: fit-content;
   background-color: aquamarine;
 }
+
+.player-select-panel {
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+}
+
