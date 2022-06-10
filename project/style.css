@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 html {
+
   box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
 }
 
-*, * ::before, *::after {
-  margin: 0px;
+* {
   box-sizing: inherit;
 }
 
@@ -20,9 +23,30 @@ main {
   background-color: aquamarine;
 }
 
-.player-select-panel {
+.settings-panel {
   width: 1000px;
-  display: flex;
-  justify-content: center;
 }
 
+/* player selection panel */
+.player-select-panel {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottom-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+#previous {
+align-self: flex-start;
+margin-right: auto;
+}
+
+#increase {
+  align-self: flex-end;
+  margin-left: auto;
+}
+/* user panels */
