@@ -16,6 +16,10 @@ main {
   align-content: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .game-panel {
   margin: 100px;
   width: auto;
