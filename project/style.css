@@ -20,15 +20,18 @@ main {
   display: none;
 }
 
+.visible {
+  display: flex;
+}
+
 .game-panel {
   margin: 100px;
-  width: auto;
+  width: 1200px;
   height: fit-content;
   background-color: aquamarine;
 }
 
 .start-panel {
-  display: flex;
   flex-direction: column;
   width: fit-content;
 }
@@ -60,3 +63,6 @@ margin-right: auto;
   margin: 10px;
 }
 /* user panels */
+.user-panel {
+  flex: auto;
+}
