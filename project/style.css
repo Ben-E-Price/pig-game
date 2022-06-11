@@ -23,8 +23,10 @@ main {
   background-color: aquamarine;
 }
 
-.settings-panel {
-  width: 1000px;
+.start-panel {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
 }
 
 /* player selection panel */
@@ -48,5 +50,9 @@ margin-right: auto;
 #increase {
   align-self: flex-end;
   margin-left: auto;
+}
+
+#start-btn {
+  margin: 10px;
 }
 /* user panels */
