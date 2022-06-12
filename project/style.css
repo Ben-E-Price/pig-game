@@ -16,6 +16,10 @@ main {
   align-content: center;
 }
 
+body {
+  background-image: linear-gradient(to top, #486091, #5c78b9);
+}
+
 .hidden {
   display: none;
 }
@@ -28,9 +32,9 @@ main {
   margin: 100px;
   width: 1200px;
   height: fit-content;
-  background-color: aquamarine;
   display: flex;
   flex-wrap: wrap;
+  gap: 25px;
 }
 
 .start-panel {
@@ -67,9 +71,16 @@ margin-right: auto;
 /* user panels */
 .user-panel {
  flex: 1 1 auto;
- width: 50%;
 
  display: flex;
  flex-direction: column;
  align-items: center;
+
+ border-radius: 20px;
+ background-color: rgba(256, 256, 256, .15);
+}
+
+/* game play elements */
+#dice-img {
+  transform: scale(30%);
 }
