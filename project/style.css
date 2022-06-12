@@ -81,6 +81,20 @@ margin-right: auto;
 }
 
 /* game play elements */
+.game-play-elements {
+  
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+  /*left: calc(50%-var(--half-width));
+  --half-width: calc(width / 2);*/
+
+}
+
 #dice-img {
   transform: scale(30%);
 }
