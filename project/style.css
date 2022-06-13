@@ -110,11 +110,20 @@ margin-right: auto;
   flex-direction: column;
   align-items: center;
   align-self: center;
+  gap: 70px;
 
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+  width: fit-content;
+}
 
+.game-play-btn {
+  width: 120px;
+  height: 40px;
+  border-radius: 15px;
+  font-size: 15pt;
+  background-color: #5c78b9;
 }
 
 #dice-img {
