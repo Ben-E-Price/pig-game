@@ -36,15 +36,19 @@ p {
   display: none;
 }
 
-.visible {
+.dis-flex {
   display: flex;
+}
+
+.dis-flex-col {
+  display: flex;
+  flex-direction: column;
 }
 
 .game-panel {
   margin: 100px;
   width: 1200px;
   height: fit-content;
-  display: flex;
   flex-wrap: wrap;
   gap: 25px;
 }
@@ -57,14 +61,11 @@ p {
 /* player selection panel */
 .player-select-panel {
   width: fit-content;
-  display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
 .bottom-wrapper {
   width: 100%;
-  display: flex;
 }
 
 #previous {
@@ -83,9 +84,6 @@ margin-right: auto;
 /* user panels */
 .user-panel {
  flex: 1 1 auto;
-
- display: flex;
- flex-direction: column;
  align-items: center;
 
  border-radius: 20px;
@@ -99,15 +97,11 @@ margin-right: auto;
   background-color: #486091;
   border-radius: 10px;
 
-  display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
 /* game play elements */
 .game-play-elements {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   align-self: center;
   gap: 70px;
