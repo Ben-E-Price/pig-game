@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+
+/*global element styling*/
 html {
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
@@ -32,6 +34,14 @@ p {
   font-size: 20pt;
 }
 
+button {
+  font-size: 15pt;
+  border-radius: 15px;
+  font-size: 15pt;
+  background-color: #5c78b9;
+}
+
+/*global display classes*/
 .hidden {
   display: none;
 }
@@ -54,11 +64,17 @@ p {
 }
 
 .start-panel {
-  flex-direction: column;
-  width: fit-content;
+  align-self: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #37548d;
+  border-radius: 20px;
+  padding: 20px;
 }
 
 /* player selection panel */
+
 .player-select-panel {
   width: fit-content;
   align-items: center;
@@ -69,8 +85,8 @@ p {
 }
 
 #previous {
-align-self: flex-start;
-margin-right: auto;
+  align-self: flex-start;
+  margin-right: auto;
 }
 
 #increase {
@@ -115,9 +131,6 @@ margin-right: auto;
 .game-play-btn {
   width: 120px;
   height: 40px;
-  border-radius: 15px;
-  font-size: 15pt;
-  background-color: #5c78b9;
 }
 
 #dice-img {
