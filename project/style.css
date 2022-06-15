@@ -136,3 +136,15 @@ button {
 #dice-img {
   width: 30%;
 }
+
+/* end-panel elements */
+.end-panel {
+  align-self: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  gap: 50px;
+  background-color: #37548d;
+  padding: 15px;
+  border-radius: 15px;
+}
