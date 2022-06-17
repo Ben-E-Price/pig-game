@@ -1,4 +1,6 @@
 'use strict';
+let playerNum = 2;
+
 //Player object, dynamiclly creates and stores the required number of players
 let playersCont = {
 
@@ -36,9 +38,87 @@ let startPanelUi = {
     increaseButton: document.getElementById("increase"),
     numDisaply: document.getElementById("player-num-dis"),
     startButton: document.getElementById("start-btn"),
-}
+};
 
-let playerNum = 2;
+
+let gameStateUi = {
+    
+    //State Classes
+    hidden: "hidden",
+    visible: "dis-flex",
+    visibleCol: "dis-flex-col",
+
+    //UI element objects
+    startPanel: {
+        startUiElement: document.getElementsByClassName("start-panel")[0],
+
+        setVisible: function (){
+            this.addClassList(this.startUiElement, this.visibleCol);
+            this.removeClassList(this.startUiElement, this.hidden);
+        },
+
+        setHidden: function(){
+            this.addClassList(this.startUiElement, this.hidden);
+            this.removeClassList(this.startUiElement, this.visibleCol);
+        },
+    },
+
+    gamePlayElements: {
+        gamePlayElement: document.getElementsByClassName("game-play-elements")[0],
+
+        setVisible: function (){
+            this.addClassList(this.gamePlayElement, this.visibleCol);
+            this.removeClassList(this.gamePlayElement, this.hidden);
+        },
+
+        setHidden: function(){
+            this.addClassList(this.gamePlayElement, this.hidden);
+            this.removeClassList(this.gamePlayElement, this.visibleCol);
+        },
+    },
+
+    endPanel: {
+        endPanelElement: document.getElementsByClassName("game-play-elements")[0],
+
+        setVisible: function (){
+            this.addClassList(this.gamePlayElement, this.visible);
+            this.removeClassList(this.gamePlayElement, this.hidden);
+        },
+
+        setHidden: function(){
+            this.addClassList(this.gamePlayElement, this.hidden);
+            this.removeClassList(this.gamePlayElement, this.visible);
+        },
+    },
+
+    addClassList: function(element, classState){
+        element.classList.add(classState);
+    },
+
+    removeClassList: function(element, classState){
+        element.classList.remove(classState);
+    },
+
+    //UI state methods
+    startState: function(){
+        this.startPanel.setVisible;
+        this.gamePlayElements.setHidden;
+        this.endPanel.setHidden;
+    },
+
+    gamePlayState: function(){
+        this.startPanel.setHidden;
+        this.gamePlayElements.setVisible;
+        this.endPanel.setHidden;
+    },
+
+    endState: function(){
+        this.startPanel.setHidden;
+        this.gamePlayElements.setHidden;
+        this.endPanel.setVisible;
+    },
+
+};
 
 //Sets number of players - Updates player-num-display UI element
 function playerNumDisplay(event){
@@ -49,14 +129,14 @@ function playerNumDisplay(event){
         playerNum --;
     } else if(btnClick === "previous" && playerNum === 2){
         playerNum = 4;
-    }
+    };
 
     // Increase playerNum
     if(btnClick === "increase" && playerNum < 4){
         playerNum ++;
     } else if(btnClick === "increase" && playerNum === 4){
         playerNum = 2;
-    }
+    };
 
     //Updates UI with current number
     const playerNumString = playerNum.toString();
@@ -64,11 +144,10 @@ function playerNumDisplay(event){
 };
 
 //Start Panel button clicks
-startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay)
-startPanelUi.increaseButton.addEventListener("click", playerNumDisplay)
+startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay);
+startPanelUi.increaseButton.addEventListener("click", playerNumDisplay);
+
 startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum)
     console.log(playersCont);
 });
-
-console.log(playersCont);
