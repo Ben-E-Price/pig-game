@@ -30,6 +30,43 @@ let playersCont = {
     },
 };
 
+//Contains all start panel UI elements
+let startPanelUi = {
+    decreaseButton: document.getElementById("previous"),
+    increaseButton: document.getElementById("increase"),
+    numDisaply: document.getElementById("player-num-dis"),
+    startButton: document.getElementById("start-btn"),
+}
+
+let playerNum = 4;
+
+//Sets number of players - Updates player-num-display UI element
+function playerNumDisplay(event){
+    const btnClick = event.target.id; //stores the id of clicked button
+
+    // //Decrease playerNum
+    if(btnClick === "previous" && playerNum > 2){
+        playerNum --;
+    } else if(btnClick === "previous" && playerNum === 2){
+        playerNum = 4;
+    }
+
+    // Increase playerNum
+    if(btnClick === "increase" && playerNum < 4){
+        playerNum ++;
+    } else if(btnClick === "increase" && playerNum === 4){
+        playerNum = 2;
+    }
+
+    //Updates UI with current number
+    const playerNumString = playerNum.toString();
+    startPanelUi.numDisaply.textContent = playerNumString;
+};
+
+//Start Panel button clicks
+startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay)
+startPanelUi.increaseButton.addEventListener("click", playerNumDisplay)
+
 playersCont.createPlayer(4);
 
 console.log(playersCont);

@@ -12,7 +12,7 @@
 
       <section class="game-panel dis-flex">
 
-          <section class="start-panel hidden">
+          <section class="start-panel dis-flex-col">
 
             <section class="player-select-panel dis-flex-col">
 
@@ -22,7 +22,9 @@
 
               <div class="player-select bottom-wrapper dis-flex">
                 <button class="player-select-btn" id="previous"> < </button>
-                <div class="number-display"> 4 </div>
+                <div class="number-display"> 
+                  <p id="player-num-dis"> 2 </p>  
+                </div>
                 <button class="player-select-btn" id="increase"> > </button>
               </div>
 
@@ -58,7 +60,7 @@
 
           </section>
 
-          <section class="game-play-elements dis-flex-col">
+          <section class="game-play-elements hidden">
 
             <button class="game-play-btn" id="roll-btn"> Roll Dice </button>
             <img id="dice-img" src="dice-1.png">            
