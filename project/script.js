@@ -53,13 +53,13 @@ let gameStateUi = {
         startUiElement: document.getElementsByClassName("start-panel")[0],
 
         setVisible: function (){
-            this.addClassList(this.startUiElement, this.visibleCol);
-            this.removeClassList(this.startUiElement, this.hidden);
+            this.startUiElement.classList.add(this.visibleCol);
+            this.startUiElement.classList.remove(this.hidden);
         },
 
         setHidden: function(){
-            this.addClassList(this.startUiElement, this.hidden);
-            this.removeClassList(this.startUiElement, this.visibleCol);
+            this.startUiElement.classList.add(this.hidden);
+            this.startUiElement.classList.remove(this.visibleCol);
         },
     },
 
@@ -67,13 +67,14 @@ let gameStateUi = {
         gamePlayElement: document.getElementsByClassName("game-play-elements")[0],
 
         setVisible: function (){
-            this.addClassList(this.gamePlayElement, this.visibleCol);
-            this.removeClassList(this.gamePlayElement, this.hidden);
+            this.gamePlayElement.classList.add(this.visibleCol);
+            this.gamePlayElement.classList.remove(this.hidden);
+
         },
 
         setHidden: function(){
-            this.addClassList(this.gamePlayElement, this.hidden);
-            this.removeClassList(this.gamePlayElement, this.visibleCol);
+            this.gamePlayElement.classList.add(this.hidden);
+            this.gamePlayElement.classList.remove(this.visibleCol);
         },
     },
 
@@ -81,22 +82,14 @@ let gameStateUi = {
         endPanelElement: document.getElementsByClassName("game-play-elements")[0],
 
         setVisible: function (){
-            this.addClassList(this.gamePlayElement, this.visible);
-            this.removeClassList(this.gamePlayElement, this.hidden);
+            this.endPanelElement.classList.add(this.visible);
+            this.endPanelElement.classList.remove(this.hidden);
         },
 
         setHidden: function(){
-            this.addClassList(this.gamePlayElement, this.hidden);
-            this.removeClassList(this.gamePlayElement, this.visible);
+            this.endPanelElement.classList.add(this.hidden);
+            this.endPanelElement.classList.remove(this.visible);
         },
-    },
-
-    addClassList: function(element, classState){
-        element.classList.add(classState);
-    },
-
-    removeClassList: function(element, classState){
-        element.classList.remove(classState);
     },
 
     //UI state methods
