@@ -38,7 +38,7 @@ let startPanelUi = {
     startButton: document.getElementById("start-btn"),
 }
 
-let playerNum = 4;
+let playerNum = 2;
 
 //Sets number of players - Updates player-num-display UI element
 function playerNumDisplay(event){
@@ -66,7 +66,9 @@ function playerNumDisplay(event){
 //Start Panel button clicks
 startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay)
 startPanelUi.increaseButton.addEventListener("click", playerNumDisplay)
-
-playersCont.createPlayer(4);
+startPanelUi.startButton.addEventListener("click", function(){
+    playersCont.createPlayer(playerNum)
+    console.log(playersCont);
+});
 
 console.log(playersCont);
