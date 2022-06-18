@@ -1,5 +1,7 @@
 'use strict';
 let playerNum = 2;
+const userPanelElement = document.getElementsByClassName("user-panel")[0];
+
 
 //Player object, dynamiclly creates and stores the required number of players
 let playersCont = {
@@ -9,11 +11,19 @@ let playersCont = {
         playerNum: 1,
         playerCurrentScore:0,
         playerTotalScore: 0,
+        playerPanel: null,
     },
 
     //Called to create player objects
     createPlayer: function(numOfPlayers){
     
+        //Creates a UI panel for each player object
+        function createUserPanel(){
+            const  playerPanel = userPanelElement.cloneNode(true);
+            document.getElementsByClassName("game-panel")[0].appendChild(playerPanel);
+            return playerPanel;
+        }
+
         //Returns the string to correcly name each object
         function playerString(playerNum){
             let outString = `player-${playerNum}`
@@ -24,13 +34,18 @@ let playersCont = {
         for(let i = 0; i < numOfPlayers; i++){
             const playerClone = structuredClone(this.clonePlayer);
             playerClone.playerNum = i;
-            this[playerString(i)] = playerClone;
+            playerClone.playerPanel = createUserPanel();
+            this[playerString(i)] = playerClone;  
         };
 
+        //Removes inital player UI element
+        userPanelElement.remove();
         //Removes the temp object after player objects are created
         delete this.clonePlayer;
     },
 };
+
+console.log(playersCont)//player object debug
 
 //Contains all start panel UI elements
 let startPanelUi = {
