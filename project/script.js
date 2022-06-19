@@ -45,8 +45,6 @@ let playersCont = {
     },
 };
 
-console.log(playersCont)//player object debug
-
 //Contains all start panel UI elements
 let startPanelUi = {
     decreaseButton: document.getElementById("previous"),
@@ -68,13 +66,13 @@ let gameStateUi = {
         startUiElement: document.getElementsByClassName("start-panel")[0],
 
         setVisible: function (){
-            this.startUiElement.classList.add(this.visibleCol);
-            this.startUiElement.classList.remove(this.hidden);
+            this.startUiElement.classList.add(gameStateUi.visibleCol);
+            this.startUiElement.classList.remove(gameStateUi.hidden);
         },
 
         setHidden: function(){
-            this.startUiElement.classList.add(this.hidden);
-            this.startUiElement.classList.remove(this.visibleCol);
+            this.startUiElement.classList.add(gameStateUi.hidden);
+            this.startUiElement.classList.remove(gameStateUi.visibleCol);
         },
     },
 
@@ -82,14 +80,14 @@ let gameStateUi = {
         gamePlayElement: document.getElementsByClassName("game-play-elements")[0],
 
         setVisible: function (){
-            this.gamePlayElement.classList.add(this.visibleCol);
-            this.gamePlayElement.classList.remove(this.hidden);
+            this.gamePlayElement.classList.add(gameStateUi.visibleCol);
+            this.gamePlayElement.classList.remove(gameStateUi.hidden);
 
         },
 
         setHidden: function(){
-            this.gamePlayElement.classList.add(this.hidden);
-            this.gamePlayElement.classList.remove(this.visibleCol);
+            this.gamePlayElement.classList.add(gameStateUi.hidden);
+            this.gamePlayElement.classList.remove(gameStateUi.visibleCol);
         },
     },
 
@@ -109,21 +107,21 @@ let gameStateUi = {
 
     //UI state methods
     startState: function(){
-        this.startPanel.setVisible;
-        this.gamePlayElements.setHidden;
-        this.endPanel.setHidden;
+        this.startPanel.setVisible();
+        this.gamePlayElements.setHidden();
+        this.endPanel.setHidden();
     },
 
     gamePlayState: function(){
-        this.startPanel.setHidden;
-        this.gamePlayElements.setVisible;
-        this.endPanel.setHidden;
+        this.startPanel.setHidden();
+        this.gamePlayElements.setVisible();
+        this.endPanel.setHidden();
     },
 
     endState: function(){
-        this.startPanel.setHidden;
-        this.gamePlayElements.setHidden;
-        this.endPanel.setVisible;
+        this.startPanel.setHidden();
+        this.gamePlayElements.setHidden();
+        this.endPanel.setVisible();
     },
 
 };
@@ -156,6 +154,7 @@ startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay);
 startPanelUi.increaseButton.addEventListener("click", playerNumDisplay);
 
 startPanelUi.startButton.addEventListener("click", function(){
-    playersCont.createPlayer(playerNum)
-    console.log(playersCont);
+    playersCont.createPlayer(playerNum);
+    gameStateUi.gamePlayState();
+    console.log(gameStateUi);
 });
