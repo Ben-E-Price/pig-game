@@ -56,11 +56,12 @@ button {
 }
 
 .game-panel {
+  --gap-size: 25px;
   margin: 100px;
   width: 1200px;
   height: fit-content;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: var(--gap-size);
 }
 
 .start-panel {
@@ -105,6 +106,7 @@ button {
  border-radius: 20px;
  padding: 30px;
  background-color: rgba(256, 256, 256, .15);
+ width: calc(50% - var(--gap-size));
 }
 
 .current-score-panel {

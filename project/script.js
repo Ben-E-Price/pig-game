@@ -80,9 +80,16 @@ let gameStateUi = {
         gamePlayElement: document.getElementsByClassName("game-play-elements")[0],
 
         setVisible: function (){
-            this.gamePlayElement.classList.add(gameStateUi.visibleCol);
-            this.gamePlayElement.classList.remove(gameStateUi.hidden);
 
+            //Sets the direction of game-play-elements depending on number of players
+            if(playerNum === 3) {
+                this.gamePlayElement.classList.add(gameStateUi.visible);
+                this.gamePlayElement.style.justifyContent = "center";
+            } else {
+                this.gamePlayElement.classList.add(gameStateUi.visibleCol);
+            };
+                       
+            this.gamePlayElement.classList.remove(gameStateUi.hidden);
         },
 
         setHidden: function(){
