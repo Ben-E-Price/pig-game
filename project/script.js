@@ -46,13 +46,18 @@ let playersCont = {
 };
 
 //Contains all start panel UI elements
-let startPanelUi = {
+const startPanelUi = {
     decreaseButton: document.getElementById("previous"),
     increaseButton: document.getElementById("increase"),
     numDisaply: document.getElementById("player-num-dis"),
     startButton: document.getElementById("start-btn"),
 };
 
+//Contains button elements from game-play-elements
+const gamePlayElementButtons = {
+    btnDiceRoll: document.getElementById("roll-btn"),
+    btnHold: document.getElementById("hold-btn"),
+};
 
 let gameStateUi = {
     
@@ -61,7 +66,8 @@ let gameStateUi = {
     visible: "dis-flex",
     visibleCol: "dis-flex-col",
 
-    //UI element objects
+    //UI element objects 
+    //Objects contain elements with functions to change their visibility
     startPanel: {
         startUiElement: document.getElementsByClassName("start-panel")[0],
 
@@ -195,12 +201,17 @@ const diceImg = {
     },
 };
 
+
+
 function rollDice(){    
     function randNum(highestNum){
-        Math.floor(Math.random() * highestNum + 1);
+        const randVal = Math.floor(Math.random() * highestNum + 1);
+        return randVal;
     };
 
-    diceImg.changeImg(randNum(6));
+    let diceValue = randNum(6);
+    console.log(diceValue);
+    diceImg.changeImg(diceValue);
 };
 
 //Set an active player
@@ -217,4 +228,8 @@ startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
     console.log(gameStateUi);
+});
+
+gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
+    rollDice();
 });
