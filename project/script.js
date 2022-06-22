@@ -1,5 +1,7 @@
 'use strict';
 let playerNum = 2;
+const maxPlayers = 4;//Sets the maximum amount of players 
+let activePlayerNum = 0;
 const userPanelElement = document.getElementsByClassName("user-panel")[0];
 
 
@@ -148,14 +150,14 @@ function playerNumDisplay(event){
     // //Decrease playerNum
     if(btnClick === "previous" && playerNum > 2){
         playerNum --;
-    } else if(btnClick === "previous" && playerNum === 2){
-        playerNum = 4;
+    } else if(btnClick === "previous" && playerNum === maxPlayers){
+        playerNum = maxPlayers;
     };
 
     // Increase playerNum
-    if(btnClick === "increase" && playerNum < 4){
+    if(btnClick === "increase" && playerNum < maxPlayers){
         playerNum ++;
-    } else if(btnClick === "increase" && playerNum === 4){
+    } else if(btnClick === "increase" && playerNum === maxPlayers){
         playerNum = 2;
     };
 
@@ -201,21 +203,31 @@ const diceImg = {
     },
 };
 
-function setActivePlayer() {
-    const activePlayer = playersCont[`player-${1}`];
-    activePlayer.playerCurrentScore = 100;
-    console.log(activePlayer);
-};
 
-function rollDice(){    
+function rollDice(){
+
+    //Sets the active player object
+    function setActivePlayer() {
+        //Iterates through players, reseting to player 1
+        if(activePlayer === 4){
+            activePlayer === 1;
+        } else {
+            activePlayer ++;
+        }
+
+        const activePlayer = playersCont[`player-${activePlayerNum}`];
+        return activePlayer;
+    };
+
     function randNum(highestNum){
         const randVal = Math.floor(Math.random() * highestNum + 1);
         return randVal;
     };
 
+    let currentPlayer = setActivePlayer();
     let diceValue = randNum(6);
-    console.log(diceValue);
     diceImg.changeImg(diceValue);
+
 };
 
 //Set an active player
@@ -234,5 +246,4 @@ startPanelUi.startButton.addEventListener("click", function(){
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
     rollDice();
-    setActivePlayer();
 });
