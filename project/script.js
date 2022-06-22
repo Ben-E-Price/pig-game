@@ -35,7 +35,7 @@ let playersCont = {
             const playerClone = structuredClone(this.clonePlayer);
             playerClone.playerNum = i;
             playerClone.playerPanel = createUserPanel();
-            this[playerString(i)] = playerClone;  
+            this[playerString(i)] = playerClone; //Creates a keypair value
         };
 
         //Removes inital player UI element
@@ -201,7 +201,11 @@ const diceImg = {
     },
 };
 
-
+function setActivePlayer() {
+    const activePlayer = playersCont[`player-${1}`];
+    activePlayer.playerCurrentScore = 100;
+    console.log(activePlayer);
+};
 
 function rollDice(){    
     function randNum(highestNum){
@@ -215,9 +219,7 @@ function rollDice(){
 };
 
 //Set an active player
-//Get the active player
-//Active player rolls dice
-//Either Add dice value to current score, 
+//Either Add dice value to current score of active player, 
 //if active player holds add current score to over all score
 
 //Start Panel button clicks
@@ -227,9 +229,10 @@ startPanelUi.increaseButton.addEventListener("click", playerNumDisplay);
 startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
-    console.log(gameStateUi);
+    console.log(playersCont);
 });
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
     rollDice();
+    setActivePlayer();
 });
