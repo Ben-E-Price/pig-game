@@ -1,8 +1,6 @@
 'use strict';
 let playerNum = 2;
 const maxPlayers = 4;//Sets the maximum amount of players 
-let activePlayerNum = 0;//
-let currentPlayer = null;//Used to store the current players object
 const userPanelElement = document.getElementsByClassName("user-panel")[0];
 
 
@@ -208,14 +206,15 @@ const diceImg = {
 let activePlayer = {
     name: "",
     playerObject: null,
+    activePlayerNum: 0,
 
     //Sets the active player object
     setActivePlayer: function() {
         //Iterates through players, reseting to player 1
-        if(activePlayerNum === maxPlayers || activePlayerNum === 0){
-            activePlayerNum === 1;
+        if(this.activePlayerNum === maxPlayers || this.activePlayerNum === 0){
+            this.activePlayerNum === 1;
         } else {
-            activePlayerNum ++;
+            this.activePlayerNum ++;
         }
 
         this.playerObject = playersCont[this.name = `player-${activePlayerNum}`];
