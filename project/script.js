@@ -208,6 +208,12 @@ let activePlayer = {
     playerObject: null,
     activePlayerNum: 0,
 
+    //Retruns the current active player, Changes to the next active player
+    changeActive: function() {
+        this.returnPlayer();
+        this.setActivePlayer();
+    },
+    
     //Sets the active player object
     setActivePlayer: function() {
         //Iterates through players, reseting to player 1
@@ -217,13 +223,18 @@ let activePlayer = {
             this.activePlayerNum ++;
         }
 
-        this.playerObject = playersCont[this.name = `player-${activePlayerNum}`];
+        this.playerObject = playersCont[this.name = `player-${this.activePlayerNum}`];
     },
 
     //Returns the current player object back to playerCont
     returnPlayer: function() {
         playersCont[this.name] = this.playerObject;
-    }
+    },
+
+    //Adds value to players current score
+    addCurrentScore: function(addScore) {
+        this.playerObject.playerCurrentScore =+ addScore;    
+    },
 };
 
 function rollDice(){
@@ -250,7 +261,6 @@ startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
     activePlayer.setActivePlayer();
-    console.log(playersCont);
 });
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
