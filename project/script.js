@@ -1,7 +1,8 @@
 'use strict';
 let playerNum = 2;
 const maxPlayers = 4;//Sets the maximum amount of players 
-let activePlayerNum = 0;
+let activePlayerNum = 0;//
+let currentPlayer = null;//Used to store the current players object
 const userPanelElement = document.getElementsByClassName("user-panel")[0];
 
 
@@ -203,28 +204,36 @@ const diceImg = {
     },
 };
 
-
-function rollDice(){
+//Contains the object of the currently active player
+let activePlayer = {
+    name: "",
+    playerObject: null,
 
     //Sets the active player object
-    function setActivePlayer() {
+    setActivePlayer: function() {
         //Iterates through players, reseting to player 1
-        if(activePlayer === 4){
-            activePlayer === 1;
+        if(activePlayerNum === maxPlayers || activePlayerNum === 0){
+            activePlayerNum === 1;
         } else {
-            activePlayer ++;
+            activePlayerNum ++;
         }
 
-        const activePlayer = playersCont[`player-${activePlayerNum}`];
-        return activePlayer;
-    };
+        this.playerObject = playersCont[this.name = `player-${activePlayerNum}`];
+    },
 
+    //Returns the current player object back to playerCont
+    returnPlayer: function() {
+        playersCont[this.name] = this.playerObject;
+    }
+};
+
+function rollDice(){
+    //Create a random number
     function randNum(highestNum){
         const randVal = Math.floor(Math.random() * highestNum + 1);
         return randVal;
     };
 
-    let currentPlayer = setActivePlayer();
     let diceValue = randNum(6);
     diceImg.changeImg(diceValue);
 
@@ -241,6 +250,7 @@ startPanelUi.increaseButton.addEventListener("click", playerNumDisplay);
 startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
+    activePlayer.setActivePlayer();
     console.log(playersCont);
 });
 
