@@ -13,17 +13,29 @@ let playersCont = {
         playerCurrentScore:0,
         playerTotalScore: 0,
         playerPanel: null,
+
+        //UI elements
+        uiPlayerName: null,
+        uiPlayerCurrentScore: null,
+        uiPlayerOverallScore: null,
     },
 
     //Called to create player objects
     createPlayer: function(numOfPlayers){
-    
+
         //Creates a UI panel for each player object
         function createUserPanel(){
             const  playerPanel = userPanelElement.cloneNode(true);
             document.getElementsByClassName("game-panel")[0].appendChild(playerPanel);
             return playerPanel;
         }
+
+        function playerUiElemetns(playerObject, loopNum){
+            loopNum ++; //Acounts for clonePlayer object existing
+            playerObject.uiPlayerName = document.querySelectorAll("#player-heading")[loopNum];
+            playerObject.uiPlayerCurrentScore = document.querySelectorAll("#current-score")[loopNum];
+            playerObject.uiPlayerOverallScore = document.querySelectorAll("#overall-score")[loopNum];
+        };
 
         //Returns the string to correcly name each object
         function playerString(playerNum){
@@ -36,6 +48,7 @@ let playersCont = {
             const playerClone = structuredClone(this.clonePlayer);
             playerClone.playerNum = i;
             playerClone.playerPanel = createUserPanel();
+            playerUiElemetns(playerClone, i);
             this[playerString(i)] = playerClone; //Creates a keypair value
         };
 
@@ -261,6 +274,7 @@ startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
     activePlayer.setActivePlayer();
+    console.log(playersCont)//player objects debugging
 });
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
