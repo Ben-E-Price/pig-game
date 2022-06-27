@@ -228,9 +228,9 @@ let activePlayer = {
     },
     
     //Sets the active player object
-    setActivePlayer: function() {
+    setActivePlayer: function(initStart) {
         //Iterates through players, reseting to player 1
-        if(this.activePlayerNum === maxPlayers || this.activePlayerNum === 0){
+        if(this.activePlayerNum === maxPlayers || initStart){
             this.activePlayerNum === 0;
         } else {
             this.activePlayerNum ++;
@@ -242,6 +242,7 @@ let activePlayer = {
     //Returns the current player object back to playerCont
     returnPlayer: function() {
         playersCont[this.name] = this.playerObject;
+        console.log(playersCont)
     },
 
     //Adds value to players current score, Updates the UI with current score
@@ -250,6 +251,7 @@ let activePlayer = {
         this.playerObject.uiPlayerCurrentScore.textContent = this.playerObject.playerCurrentScore;
     },
 
+    //Adds playerCurrentScore to playerTotalScore, Updates total score UI
     addTotalScore: function() {
         this.playerObject.playerTotalScore = this.playerObject.playerCurrentScore;
         this.playerObject.uiPlayerOverallScore = this.playerObject.playerCurrentScore;
@@ -265,6 +267,13 @@ function rollDice(){
 
     let diceValue = randNum(6);
     diceImg.changeImg(diceValue);
+
+    //Changes the player or Adds diceValue to activePlayers currentScore
+    if(diceValue === 1){
+        activePlayer.changeActive();
+    } else {
+        activePlayer.addCurrentScore(diceValue);
+    }
 };
 
 //Set an active player
@@ -278,7 +287,7 @@ startPanelUi.increaseButton.addEventListener("click", playerNumDisplay);
 startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
-    activePlayer.setActivePlayer();
+    activePlayer.setActivePlayer(true);
     console.log(playersCont)//player objects debugging
 });
 
