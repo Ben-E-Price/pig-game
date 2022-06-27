@@ -32,9 +32,9 @@ let playersCont = {
 
         function playerUiElemetns(playerObject, loopNum){
             loopNum ++; //Acounts for clonePlayer object existing
-            playerObject.uiPlayerName = document.querySelectorAll("#player-heading")[loopNum];
-            playerObject.uiPlayerCurrentScore = document.querySelectorAll("#current-score")[loopNum];
-            playerObject.uiPlayerOverallScore = document.querySelectorAll("#overall-score")[loopNum];
+            playerObject.uiPlayerName = document.querySelectorAll(".player-heading")[loopNum];
+            playerObject.uiPlayerCurrentScore = document.querySelectorAll(".current-score")[loopNum];
+            playerObject.uiPlayerOverallScore = document.querySelectorAll(".overall-score")[loopNum];
         };
 
         //Returns the string to correcly name each object
