@@ -230,8 +230,8 @@ let activePlayer = {
     //Sets the active player object
     setActivePlayer: function(initStart) {
         //Iterates through players, reseting to player 1
-        if(this.activePlayerNum === maxPlayers || initStart){
-            this.activePlayerNum === 0;
+        if(this.activePlayerNum === playerNum -1 || initStart){
+            this.activePlayerNum = 0;
         } else {
             this.activePlayerNum ++;
         }
@@ -242,7 +242,6 @@ let activePlayer = {
     //Returns the current player object back to playerCont
     returnPlayer: function() {
         playersCont[this.name] = this.playerObject;
-        console.log(playersCont)
     },
 
     //Adds value to players current score, Updates the UI with current score
@@ -288,7 +287,7 @@ startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
     activePlayer.setActivePlayer(true);
-    console.log(playersCont)//player objects debugging
+    // console.log(playersCont)//player objects debugging
 });
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
