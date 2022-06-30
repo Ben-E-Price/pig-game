@@ -245,11 +245,11 @@ let activePlayer = {
     },
 
     //Adds value to players current score, Updates the UI with current score
-    addCurrentScore: function(reset) {
+    addCurrentScore: function(addScore) {
         this.playerObject.playerCurrentScore = this.playerObject.playerCurrentScore + addScore;
 
-        if(reset){
-            this.playerCurrentScore = 0
+        if(addScore === 0 || addScore === 1){
+            this.playerObject.playerCurrentScore = 0;
         }
 
         this.playerObject.uiPlayerCurrentScore.textContent = this.playerObject.playerCurrentScore;
@@ -257,9 +257,9 @@ let activePlayer = {
 
     //Adds playerCurrentScore to playerTotalScore, Updates total score UI
     addTotalScore: function() {
-        this.playerObject.playerTotalScore = this.playerObject.playerCurrentScore;
+        this.playerObject.playerTotalScore = this.playerObject.playerTotalScore + this.playerObject.playerCurrentScore;
         this.playerObject.uiPlayerOverallScore.textContent = this.playerObject.playerTotalScore;
-        this.addCurrentScore(true);
+        this.addCurrentScore(0);
     },
 };
 
