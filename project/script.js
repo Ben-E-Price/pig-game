@@ -223,6 +223,7 @@ let activePlayer = {
 
     //Retruns the current active player, Changes to the next active player
     changeActive: function() {
+        this.resetCurrentScore();
         this.returnPlayer();
         this.setActivePlayer();
     },
@@ -244,14 +245,15 @@ let activePlayer = {
         playersCont[this.name] = this.playerObject;
     },
 
+    //Resets the value of currentScore and updates UI
+    resetCurrentScore: function() {
+        this.playerObject.playerCurrentScore = 0;
+        this.playerObject.uiPlayerCurrentScore.textContent = this.playerObject.playerCurrentScore;
+    },
+
     //Adds value to players current score, Updates the UI with current score
     addCurrentScore: function(addScore) {
         this.playerObject.playerCurrentScore = this.playerObject.playerCurrentScore + addScore;
-
-        if(addScore === 0 || addScore === 1){
-            this.playerObject.playerCurrentScore = 0;
-        }
-
         this.playerObject.uiPlayerCurrentScore.textContent = this.playerObject.playerCurrentScore;
     },
 
@@ -259,7 +261,7 @@ let activePlayer = {
     addTotalScore: function() {
         this.playerObject.playerTotalScore = this.playerObject.playerTotalScore + this.playerObject.playerCurrentScore;
         this.playerObject.uiPlayerOverallScore.textContent = this.playerObject.playerTotalScore;
-        this.addCurrentScore(0);
+        this.resetCurrentScore();
     },
 };
 
@@ -271,6 +273,7 @@ function rollDice(){
     };
 
     let diceValue = randNum(6);
+    console.log(diceValue)
     diceImg.changeImg(diceValue);
 
     //Changes the player or Adds diceValue to activePlayers currentScore
