@@ -162,7 +162,7 @@ function playerNumDisplay(event){
     // //Decrease playerNum
     if(btnClick === "previous" && playerNum > 2){
         playerNum --;
-    } else if(btnClick === "previous" && playerNum === maxPlayers){
+    } else if(btnClick === "previous" && playerNum === 2){
         playerNum = maxPlayers;
     };
 
@@ -253,7 +253,8 @@ let activePlayer = {
     //Adds playerCurrentScore to playerTotalScore, Updates total score UI
     addTotalScore: function() {
         this.playerObject.playerTotalScore = this.playerObject.playerCurrentScore;
-        this.playerObject.uiPlayerOverallScore = this.playerObject.playerCurrentScore;
+        this.playerObject.playerCurrentScore = 0;
+        this.playerObject.uiPlayerOverallScore.textContent = this.playerObject.playerCurrentScore;
     },
 };
 
@@ -272,7 +273,7 @@ function rollDice(){
         activePlayer.changeActive();
     } else {
         activePlayer.addCurrentScore(diceValue);
-    }
+    };   
 };
 
 //Set an active player
@@ -292,4 +293,9 @@ startPanelUi.startButton.addEventListener("click", function(){
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
     rollDice();
+});
+
+gamePlayElementButtons.btnHold.addEventListener("click", function() {
+    activePlayer.addTotalScore();
+    console.log(activePlayer.playerObject)
 });
