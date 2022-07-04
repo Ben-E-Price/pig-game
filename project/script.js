@@ -122,13 +122,13 @@ let gameStateUi = {
         endPanelElement: document.getElementsByClassName("end-panel")[0],
 
         setVisible: function (){
-            this.endPanelElement.classList.add(gameStateUi.visible);
+            this.endPanelElement.classList.add(gameStateUi.visibleCol);
             this.endPanelElement.classList.remove(gameStateUi.hidden);
         },
 
         setHidden: function(){
             this.endPanelElement.classList.add(gameStateUi.hidden);
-            this.endPanelElement.classList.remove(gameStateUi.visible);
+            this.endPanelElement.classList.remove(gameStateUi.visibleCol);
         },
     },
 
@@ -152,8 +152,6 @@ let gameStateUi = {
     },
 
 };
-
-
 
 //Sets number of players - Updates player-num-display UI element
 function playerNumDisplay(event){
