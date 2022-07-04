@@ -119,16 +119,16 @@ let gameStateUi = {
     },
 
     endPanel: {
-        endPanelElement: document.getElementsByClassName("game-play-elements")[0],
+        endPanelElement: document.getElementsByClassName("end-panel")[0],
 
         setVisible: function (){
-            this.endPanelElement.classList.add(this.visible);
-            this.endPanelElement.classList.remove(this.hidden);
+            this.endPanelElement.classList.add(gameStateUi.visible);
+            this.endPanelElement.classList.remove(gameStateUi.hidden);
         },
 
         setHidden: function(){
-            this.endPanelElement.classList.add(this.hidden);
-            this.endPanelElement.classList.remove(this.visible);
+            this.endPanelElement.classList.add(gameStateUi.hidden);
+            this.endPanelElement.classList.remove(gameStateUi.visible);
         },
     },
 
@@ -261,9 +261,19 @@ let activePlayer = {
     addTotalScore: function() {
         this.playerObject.playerTotalScore = this.playerObject.playerTotalScore + this.playerObject.playerCurrentScore;
         this.playerObject.uiPlayerOverallScore.textContent = this.playerObject.playerTotalScore;
-        this.resetCurrentScore();
+
+        //Checks if the player has met the winning conditions.
+        if(this.playerObject.playerTotalScore >= 100){
+            winState();
+        };
+
+        this.changeActive();
     },
 };
+
+function winState(){
+    gameStateUi.endState();
+}
 
 function rollDice(){
     //Create a random number
@@ -273,7 +283,6 @@ function rollDice(){
     };
 
     let diceValue = randNum(6);
-    console.log(diceValue)
     diceImg.changeImg(diceValue);
 
     //Changes the player or Adds diceValue to activePlayers currentScore
@@ -283,10 +292,6 @@ function rollDice(){
         activePlayer.addCurrentScore(diceValue);
     };   
 };
-
-//Set an active player
-//Either Add dice value to current score of active player, 
-//if active player holds add current score to over all score
 
 //Start Panel button clicks
 startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay);
@@ -301,9 +306,9 @@ startPanelUi.startButton.addEventListener("click", function(){
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
     rollDice();
+    gameStateUi.endState();//Debug Call
 });
 
 gamePlayElementButtons.btnHold.addEventListener("click", function() {
     activePlayer.addTotalScore();
-    console.log(activePlayer.playerObject)
 });
