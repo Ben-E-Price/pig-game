@@ -151,3 +151,12 @@ button {
   border-radius: 15px;
   align-items: center;
 }
+
+#player-order-panel {
+  width: 100%;
+}
+
+#player-order-panel p {
+  display: inline;
+  padding-left: 10px;
+}
