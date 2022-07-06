@@ -49,7 +49,7 @@ let playersCont = {
             playerClone.playerNum = i;
             playerClone.playerPanel = createUserPanel();
             playerUiElemetns(playerClone, i);
-            this[playerString(i)] = playerClone; //Creates a keypair value
+            this[playerName(i)] = playerClone; //Creates a keypair value
         };
 
         //Removes inital player UI element
@@ -235,7 +235,7 @@ let activePlayer = {
             this.activePlayerNum ++;
         }
 
-        this.playerObject = playersCont[this.name = `player-${this.activePlayerNum}`];
+        this.playerObject = playersCont[this.name = playerName(this.activePlayerNum)];
     },
 
     //Returns the current player object back to playerCont
@@ -269,19 +269,9 @@ let activePlayer = {
     },
 };
 
-function winState(){
-    gameStateUi.endState();
-
-    //Creates as many score wrappers as there are players.
-    const posWrapperParent = document.getElementById("player-order-panel");
-    const posWrapper = document.getElementsByClassName("player-pos-wrapper")[0];
-    
-    for(let i = 0; i < playerNum; i++) {
-        const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
-        posWrapperParent.appendChild(wrapperClone);
-        posWrapper[0].remove();
-    };
-
+//Returns naming for player objects
+function playerName(playerNum) {
+    return `player-${playerNum}`
 }
 
 function rollDice(){
@@ -302,6 +292,29 @@ function rollDice(){
     };   
 };
 
+function winState(){
+    gameStateUi.endState();
+
+    function scoreBoard() {
+        //Create an array of scores + player Names
+        let scoresArray = []
+
+        //Sort Array by score value
+
+    }
+
+    //Creates as many score wrappers as there are players.
+    const posWrapperParent = document.getElementById("player-order-panel");
+    const posWrapper = document.getElementsByClassName("player-pos-wrapper")[0];
+    
+    for(let i = 0; i < playerNum; i++) {
+        const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
+        posWrapperParent.appendChild(wrapperClone);
+        posWrapper[0].remove();
+    };
+
+}
+
 //Start Panel button clicks
 startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay);
 startPanelUi.increaseButton.addEventListener("click", playerNumDisplay);
@@ -315,8 +328,8 @@ startPanelUi.startButton.addEventListener("click", function(){
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
     rollDice();
-    gameStateUi.endState();//Debug Call
-    winState()//Debug Call
+    // gameStateUi.endState();//Debug Call
+    // winState()//Debug Call
 });
 
 gamePlayElementButtons.btnHold.addEventListener("click", function() {
