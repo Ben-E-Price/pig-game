@@ -271,6 +271,17 @@ let activePlayer = {
 
 function winState(){
     gameStateUi.endState();
+
+    //Creates as many score wrappers as there are players.
+    const posWrapperParent = document.getElementById("player-order-panel");
+    const posWrapper = document.getElementsByClassName("player-pos-wrapper")[0];
+    
+    for(let i = 0; i < playerNum; i++) {
+        const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
+        posWrapperParent.appendChild(wrapperClone);
+        posWrapper[0].remove();
+    };
+
 }
 
 function rollDice(){
@@ -305,6 +316,7 @@ startPanelUi.startButton.addEventListener("click", function(){
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
     rollDice();
     gameStateUi.endState();//Debug Call
+    winState()//Debug Call
 });
 
 gamePlayElementButtons.btnHold.addEventListener("click", function() {
