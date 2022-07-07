@@ -272,7 +272,7 @@ let activePlayer = {
 //Returns naming for player objects
 function playerName(playerNum) {
     return `player-${playerNum}`
-}
+};
 
 function rollDice(){
     //Create a random number
@@ -296,12 +296,38 @@ function winState(){
     gameStateUi.endState();
 
     function scoreBoard() {
-        //Create an array of scores + player Names
-        let scoresArray = []
 
-        //Sort Array by score value
+        function posArrayCreate() {
+            
+            let posArray = [];//Stores sorted scores + player names
+            let currentHighestScore = 0;
+            let currentHighestName = "";
 
-    }
+            //Loops as many time as positions within posArray need to be created
+            for(let i = 0; i < playerNum; i++){
+                
+                 //Find the highest player score, insert into array, ignoring scores already inseted into posArray
+                for(let i = 0; i < playerNum; i++) {
+                    //Get each players score
+                    const comparisonScore = playersCont[playerName(i)].playerTotalScore;
+
+                    if(comparisonScore > currentHighestScore && !posArray.includes(comparisonScore)){
+                        currentHighestScore = comparisonScore;
+                        currentHighestName = playerName(i);
+                    };
+
+                    //Executes when all scores have been checked
+                    if(i === playerNum) {
+                        posArray.push([currentHighestName, currentHighestScore]);
+                    };
+                };
+            };
+        
+            return posArray;
+        }
+        
+
+    };
 
     //Creates as many score wrappers as there are players.
     const posWrapperParent = document.getElementById("player-order-panel");
@@ -313,7 +339,7 @@ function winState(){
         posWrapper[0].remove();
     };
 
-}
+};
 
 //Start Panel button clicks
 startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay);
