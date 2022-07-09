@@ -1,6 +1,7 @@
 'use strict';
 let playerNum = 2;
 const maxPlayers = 4;//Sets the maximum amount of players 
+const winningScore = 10;//Controls the score requried to win
 const userPanelElement = document.getElementsByClassName("user-panel")[0];
 
 
@@ -251,7 +252,14 @@ let activePlayer = {
 
     //Adds value to players current score, Updates the UI with current score
     addCurrentScore: function(addScore) {
+
         this.playerObject.playerCurrentScore = this.playerObject.playerCurrentScore + addScore;
+
+        //Ends the game if the win condition is met but currentScore has not been held
+        if(this.playerObject.playerCurrentScore + this.playerObject.playerTotalScore >= winningScore) {
+            this.addTotalScore();
+        };
+
         this.playerObject.uiPlayerCurrentScore.textContent = this.playerObject.playerCurrentScore;
     },
 
@@ -261,8 +269,9 @@ let activePlayer = {
         this.playerObject.uiPlayerOverallScore.textContent = this.playerObject.playerTotalScore;
 
         //Checks if the player has met the winning conditions.
-        if(this.playerObject.playerTotalScore >= 100){
+        if(this.playerObject.playerTotalScore >= winningScore){
             winState();
+            this.returnPlayer();
         };
 
         this.changeActive();
@@ -292,23 +301,26 @@ function rollDice(){
     };   
 };
 
-function winState(){
+function winState() {
+
     gameStateUi.endState();
 
+    //Creates UI scoreboard, displaying players in order of finishing position
     function scoreBoard() {
 
+        //Create a sorted array of player scores + names
         function posArrayCreate() {
-            
+    
             let posArray = [];//Stores sorted scores + player names
             let currentHighestScore = 0;
             let currentHighestName = "";
 
-            //Loops as many time as positions within posArray need to be created
+            //Loops as many time as positions within posArray need to be created - I.E once for each player
             for(let i = 0; i < playerNum; i++){
                 
-                 //Find the highest player score, insert into array, ignoring scores already inseted into posArray
+                //Compares player scores, insert into array, ignoring scores already inserted into posArray
                 for(let i = 0; i < playerNum; i++) {
-                    //Get each players score
+                    //Get player score
                     const comparisonScore = playersCont[playerName(i)].playerTotalScore;
 
                     if(comparisonScore > currentHighestScore && !posArray.includes(comparisonScore)){
@@ -322,10 +334,9 @@ function winState(){
                     };
                 };
             };
-        
+
             return posArray;
-        }
-        
+        };
 
     };
 
@@ -336,9 +347,9 @@ function winState(){
     for(let i = 0; i < playerNum; i++) {
         const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
         posWrapperParent.appendChild(wrapperClone);
-        posWrapper[0].remove();
     };
 
+    posWrapper.remove();
 };
 
 //Start Panel button clicks
