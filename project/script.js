@@ -1,7 +1,7 @@
 'use strict';
 let playerNum = 2;
 const maxPlayers = 4;//Sets the maximum amount of players 
-const winningScore = 10;//Controls the score requried to win
+const winningScore = 5;//Controls the score requried to win
 const userPanelElement = document.getElementsByClassName("user-panel")[0];
 
 
@@ -317,7 +317,7 @@ function winState() {
 
             //Loops as many time as positions within posArray need to be created - I.E once for each player
             for(let i = 0; i < playerNum; i++){
-                
+
                 //Compares player scores, insert into array, ignoring scores already inserted into posArray
                 for(let i = 0; i < playerNum; i++) {
                     //Get player score
@@ -329,16 +329,21 @@ function winState() {
                     };
 
                     //Executes when all scores have been checked
-                    if(i === playerNum) {
+                    if(i === playerNum - 1) {
+                        console.log(`inset if loop`);
                         posArray.push([currentHighestName, currentHighestScore]);
                     };
                 };
             };
-
+            console.log(posArray);
             return posArray;
         };
 
+        posArrayCreate();
+
     };
+
+    scoreBoard();
 
     //Creates as many score wrappers as there are players.
     const posWrapperParent = document.getElementById("player-order-panel");
