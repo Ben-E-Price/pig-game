@@ -1,7 +1,7 @@
 'use strict';
 let playerNum = 2;
 const maxPlayers = 4;//Sets the maximum amount of players 
-const winningScore = 5;//Controls the score requried to win
+const winningScore = 20;//Controls the score requried to win
 const userPanelElement = document.getElementsByClassName("user-panel")[0];
 
 
@@ -315,27 +315,42 @@ function winState() {
             let currentHighestScore = 0;
             let currentHighestName = "";
 
-            //Loops as many time as positions within posArray need to be created - I.E once for each player
+            //Checks each array index postion - Rules out players already added
+            function posArrayIncludes(playerName){
+                let includes = false;
+
+                posArray.forEach((element, index) => {
+                    includes = posArray[index].includes(playerName) ? true : includes;
+                });
+
+                return includes;
+            };
+
+            //Loops as many time as positions within posArray are required - I.E once for each player
             for(let i = 0; i < playerNum; i++){
-
-                //Compares player scores, insert into array, ignoring scores already inserted into posArray
+                
+                //Compares player scores - Inserts the highest into posArray
                 for(let i = 0; i < playerNum; i++) {
-                    //Get player score
-                    const comparisonScore = playersCont[playerName(i)].playerTotalScore;
-
-                    if(comparisonScore > currentHighestScore && !posArray.includes(comparisonScore)){
+                    //Get current player and their score
+                    const currentPlayer = playerName(i);
+                    const comparisonScore = playersCont[currentPlayer].playerTotalScore;
+                    
+                    if(comparisonScore >= currentHighestScore && !posArrayIncludes(currentPlayer)){
                         currentHighestScore = comparisonScore;
-                        currentHighestName = playerName(i);
+                        currentHighestName = currentPlayer; 
                     };
 
-                    //Executes when all scores have been checked
+                    //Inserts the highest score + name into posArray
                     if(i === playerNum - 1) {
-                        console.log(`inset if loop`);
                         posArray.push([currentHighestName, currentHighestScore]);
+                        currentHighestScore = 0;// Reset current highest score
+                        currentHighestName = "";//Reset players name
                     };
+
+                    console.log(posArray)//Debug array check
                 };
             };
-            console.log(posArray);
+            
             return posArray;
         };
 
@@ -377,3 +392,16 @@ gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
 gamePlayElementButtons.btnHold.addEventListener("click", function() {
     activePlayer.addTotalScore();
 });
+
+//Test
+// const testArray = [[1,2,3], [4,5,6]]
+
+// // console.log(testArray[1])
+// // console.log(testArray[1].includes(4))
+
+// testArray.forEach((element, index) => {
+//     for(let i = 0; i < testArray[index].length; i++){
+//         console.log(i)
+//         console.log(testArray[index].includes(i))
+//     }
+// })
