@@ -354,22 +354,27 @@ function winState() {
             return posArray;
         };
 
-        posArrayCreate();
+        //Creates scoreboard elements
+        function createScoreElements(posArray) {
+            const posWrapperParent = document.getElementById("player-order-panel");
+            const posWrapper = document.getElementsByClassName("player-pos-wrapper")[0];
 
+            posArray.forEach((element, index) => {
+                const playerPos = posArray[index]
+                const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
+                console.log(playerPos)
+                wrapperClone.getElementsByClassName("player-pos-num")[index].textContent = 
+                posWrapperParent.appendChild(wrapperClone);
+            });
+
+            posWrapper.remove();
+        };
+
+        createScoreElements(posArrayCreate());
     };
 
     scoreBoard();
 
-    //Creates as many score wrappers as there are players.
-    const posWrapperParent = document.getElementById("player-order-panel");
-    const posWrapper = document.getElementsByClassName("player-pos-wrapper")[0];
-    
-    for(let i = 0; i < playerNum; i++) {
-        const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
-        posWrapperParent.appendChild(wrapperClone);
-    };
-
-    posWrapper.remove();
 };
 
 //Start Panel button clicks
