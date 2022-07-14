@@ -1,7 +1,7 @@
 'use strict';
 let playerNum = 2;
 const maxPlayers = 4;//Sets the maximum amount of players 
-const winningScore = 20;//Controls the score requried to win
+const winningScore = 5;//Controls the score requried to win
 const userPanelElement = document.getElementsByClassName("user-panel")[0];
 
 
@@ -360,10 +360,9 @@ function winState() {
             const posWrapper = document.getElementsByClassName("player-pos-wrapper")[0];
 
             posArray.forEach((element, index) => {
-                const playerPos = posArray[index]
-                const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
-                console.log(playerPos)
-                wrapperClone.getElementsByClassName("player-pos-num")[index].textContent = 
+                const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements 
+                wrapperClone.children[0].textContent = posArray[index][0]//Sets position number
+                wrapperClone.children[1].textContent = posArray[index][1]//Sets player text
                 posWrapperParent.appendChild(wrapperClone);
             });
 
