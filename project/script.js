@@ -10,7 +10,7 @@ let playersCont = {
 
     //Temp obj used to create as many player objects as required
     clonePlayer: {
-        playerNum: 1,
+        playerDisName: null,
         playerCurrentScore:0,
         playerTotalScore: 0,
         playerPanel: null,
@@ -39,15 +39,17 @@ let playersCont = {
         };
 
         //Returns the string to correcly name each object
-        function playerString(playerNum){
-            let outString = `player-${playerNum}`
+        function playerDisplayName(playerNum){
+            playerNum ++;
+
+            let outString = `Player ${playerNum}`
             return outString;
         };
 
         //Creates player objects by looping as many times as there are players needed
         for(let i = 0; i < numOfPlayers; i++){
             const playerClone = structuredClone(this.clonePlayer);
-            playerClone.playerNum = i;
+            playerClone.playerNum = playerDisplayName(i);
             playerClone.playerPanel = createUserPanel();
             playerUiElemetns(playerClone, i);
             this[playerName(i)] = playerClone; //Creates a keypair value
@@ -361,8 +363,12 @@ function winState() {
 
             posArray.forEach((element, index) => {
                 const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements 
+
+                //HARD TO READ - LOOK INTO ALT SOLUTIONS
                 wrapperClone.children[0].textContent = posArray[index][0]//Sets position number
                 wrapperClone.children[1].textContent = posArray[index][1]//Sets player text
+
+
                 posWrapperParent.appendChild(wrapperClone);
             });
 
@@ -384,28 +390,13 @@ startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
     activePlayer.setActivePlayer(true);
-    // console.log(playersCont)//player objects debugging
+    console.log(playersCont)//player objects debugging
 });
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
     rollDice();
-    // gameStateUi.endState();//Debug Call
-    // winState()//Debug Call
 });
 
 gamePlayElementButtons.btnHold.addEventListener("click", function() {
     activePlayer.addTotalScore();
 });
-
-//Test
-// const testArray = [[1,2,3], [4,5,6]]
-
-// // console.log(testArray[1])
-// // console.log(testArray[1].includes(4))
-
-// testArray.forEach((element, index) => {
-//     for(let i = 0; i < testArray[index].length; i++){
-//         console.log(i)
-//         console.log(testArray[index].includes(i))
-//     }
-// })
