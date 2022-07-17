@@ -10,7 +10,7 @@ let playersCont = {
 
     //Temp obj used to create as many player objects as required
     clonePlayer: {
-        playerDisName: null,
+        playerDisName: "",
         playerCurrentScore:0,
         playerTotalScore: 0,
         playerPanel: null,
@@ -33,12 +33,12 @@ let playersCont = {
 
         function playerUiElemetns(playerObject, loopNum){
             loopNum ++; //Acounts for clonePlayer object existing
-            playerObject.uiPlayerName = document.querySelectorAll(".player-heading")[loopNum];
+            playerObject.uiPlayerName = document.querySelectorAll(".player-heading")[loopNum].textContent = playerObject.playerDisName;
             playerObject.uiPlayerCurrentScore = document.querySelectorAll(".current-score")[loopNum];
             playerObject.uiPlayerOverallScore = document.querySelectorAll(".overall-score")[loopNum];
         };
 
-        //Returns the string to correcly name each object
+        //Returns the string to correcly name each player
         function playerDisplayName(playerNum){
             playerNum ++;
 
@@ -49,7 +49,7 @@ let playersCont = {
         //Creates player objects by looping as many times as there are players needed
         for(let i = 0; i < numOfPlayers; i++){
             const playerClone = structuredClone(this.clonePlayer);
-            playerClone.playerNum = playerDisplayName(i);
+            playerClone.playerDisName = playerDisplayName(i);
             playerClone.playerPanel = createUserPanel();
             playerUiElemetns(playerClone, i);
             this[playerName(i)] = playerClone; //Creates a keypair value
@@ -303,6 +303,7 @@ function rollDice(){
     };   
 };
 
+//Called when games win condition is met - Sets the UI into endState + creates a score board
 function winState() {
 
     gameStateUi.endState();
@@ -315,7 +316,8 @@ function winState() {
     
             let posArray = [];//Stores sorted scores + player names
             let currentHighestScore = 0;
-            let currentHighestName = "";
+            let currentHighestPlayer = "";//Stores player object name
+            let currentHighestName = "";//Stores player display name
 
             //Checks each array index postion - Rules out players already added
             function posArrayIncludes(playerName){
@@ -336,17 +338,20 @@ function winState() {
                     //Get current player and their score
                     const currentPlayer = playerName(i);
                     const comparisonScore = playersCont[currentPlayer].playerTotalScore;
+                    const currentName = playersCont[currentPlayer].playerDisName;
                     
                     if(comparisonScore >= currentHighestScore && !posArrayIncludes(currentPlayer)){
                         currentHighestScore = comparisonScore;
-                        currentHighestName = currentPlayer; 
+                        currentHighestPlayer = currentPlayer; 
+                        currentHighestName = currentName;
                     };
 
-                    //Inserts the highest score + name into posArray
+                    //Inserts the highest score + name into posArray - Resets highest variable values
                     if(i === playerNum - 1) {
-                        posArray.push([currentHighestName, currentHighestScore]);
-                        currentHighestScore = 0;// Reset current highest score
-                        currentHighestName = "";//Reset players name
+                        posArray.push([currentHighestPlayer ,currentHighestName ,currentHighestScore]);
+                        currentHighestScore = 0;
+                        currentHighestPlayer = "";
+                        currentHighestName = "";
                     };
 
                     console.log(posArray)//Debug array check
@@ -356,23 +361,25 @@ function winState() {
             return posArray;
         };
 
-        //Creates scoreboard elements
+        //Creates scoreboard elements - with correct text content
         function createScoreElements(posArray) {
+
+            //Sets text content of elements based on loopNum value
+            function setScoreBoardContent(loopNum){
+                document.querySelectorAll(".player-pos-text")[loopNum].textContent = posArray[loopNum][1];
+                document.querySelectorAll(".player-pos-num")[loopNum].textContent = loopNum + 1;
+            };
+
             const posWrapperParent = document.getElementById("player-order-panel");
             const posWrapper = document.getElementsByClassName("player-pos-wrapper")[0];
-
+            
             posArray.forEach((element, index) => {
-                const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements 
-
-                //HARD TO READ - LOOK INTO ALT SOLUTIONS
-                wrapperClone.children[0].textContent = posArray[index][0]//Sets position number
-                wrapperClone.children[1].textContent = posArray[index][1]//Sets player text
-
-
+                const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
+                setScoreBoardContent(index);
                 posWrapperParent.appendChild(wrapperClone);
             });
 
-            posWrapper.remove();
+            posWrapperParent.lastChild.remove();
         };
 
         createScoreElements(posArrayCreate());
