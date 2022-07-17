@@ -366,8 +366,40 @@ function winState() {
 
             //Sets text content of elements based on loopNum value
             function setScoreBoardContent(loopNum){
+
+                //Adds lettering st, nd, rd ,th 
+                function createNumLettering(loopNum){
+                    loopNum ++;//Acounts for index postiioning
+
+                    //Find the last number of loop num
+                    let loopNumString = loopNum.toString();
+                    let endNum = loopNumString.charAt(loopNumString.length - 1);
+                    
+                    //Add lettering
+                    if(endNum === "1" || endNum === "2" || endNum === "3") {
+                        switch(endNum){
+                            case "1":
+                                loopNumString = `${loopNumString}st`;
+                                break;
+                            case "2":
+                                loopNumString = `${loopNumString}nd`;
+                                break;
+                            case "3":
+                                loopNumString = `${loopNumString}rd`;
+                                break
+                            default:
+                                console.log("createNumLettering function failed");
+                        };
+
+                    } else {
+                        loopNumString = `${loopNumString}th`;
+                    };                            
+            
+                    return loopNumString;
+                };
+
                 document.querySelectorAll(".player-pos-text")[loopNum].textContent = posArray[loopNum][1];
-                document.querySelectorAll(".player-pos-num")[loopNum].textContent = loopNum + 1;
+                document.querySelectorAll(".player-pos-num")[loopNum].textContent = createNumLettering(loopNum);
             };
 
             const posWrapperParent = document.getElementById("player-order-panel");
