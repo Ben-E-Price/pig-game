@@ -117,7 +117,14 @@ let gameStateUi = {
 
         setHidden: function(){
             this.gamePlayElement.classList.add(gameStateUi.hidden);
-            this.gamePlayElement.classList.remove(gameStateUi.visibleCol);
+
+            //Removes class based on the number of players
+            if(playerNum === 3) {
+                this.gamePlayElement.classList.remove(gameStateUi.visible);
+            } else {
+                this.gamePlayElement.classList.remove(gameStateUi.visibleCol);
+            };
+
         },
     },
 
