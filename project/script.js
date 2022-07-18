@@ -76,6 +76,11 @@ const gamePlayElementButtons = {
     btnHold: document.getElementById("hold-btn"),
 };
 
+const endPanelUi = {
+    btnRestart: document.getElementById("restart-btn"),
+    btnReset: document.getElementById("reset-btn"),
+};
+
 let gameStateUi = {
     
     //State Classes
@@ -445,4 +450,12 @@ gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
 
 gamePlayElementButtons.btnHold.addEventListener("click", function() {
     activePlayer.addTotalScore();
+});
+
+endPanelUi.btnReset.addEventListener("click", function (){
+    console.log("Reset Clicked")
+});
+
+endPanelUi.btnRestart.addEventListener("click", function (){
+    console.log("Restart Clicked")
 });
