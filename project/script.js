@@ -292,33 +292,12 @@ let activePlayer = {
     },
 };
 
-//Returns naming for player objects
-function playerName(playerNum) {
-    return `player-${playerNum}`
-};
-
-function rollDice(){
-    //Create a random number
-    function randNum(highestNum){
-        const randVal = Math.floor(Math.random() * highestNum + 1);
-        return randVal;
-    };
-
-    let diceValue = randNum(6);
-    diceImg.changeImg(diceValue);
-
-    //Changes the player or Adds diceValue to activePlayers currentScore
-    if(diceValue === 1){
-        activePlayer.changeActive();
-    } else {
-        activePlayer.addCurrentScore(diceValue);
-    };   
-};
-
 const scoreBoardUi = {
+    posWrapper: document.getElementsByClassName("player-pos-wrapper")[0],
+    posWrapperParent: document.getElementById("player-order-panel"),
 
     //Creates UI scoreboard, displaying players in order of finishing position
-    scoreBoard: function() {
+    scoreBoardCreate: function() {
 
         //Create a sorted array of player scores + names
         function posArrayCreate() {
@@ -409,30 +388,57 @@ const scoreBoardUi = {
 
                 document.querySelectorAll(".player-pos-text")[loopNum].textContent = posArray[loopNum][1];
                 document.querySelectorAll(".player-pos-num")[loopNum].textContent = createNumLettering(loopNum);
-            };
+            };          
 
-            const posWrapperParent = document.getElementById("player-order-panel");
-            const posWrapper = document.getElementsByClassName("player-pos-wrapper")[0];
-            
             posArray.forEach((element, index) => {
-                const wrapperClone = posWrapper.cloneNode(true);//Clones posWrapper and its child elements
+                const wrapperClone = scoreBoardUi.posWrapper.cloneNode(true);//Clones posWrapper and its child elements
                 setScoreBoardContent(index);
-                posWrapperParent.appendChild(wrapperClone);
+                scoreBoardUi.posWrapperParent.appendChild(wrapperClone);
             });
 
-            posWrapperParent.lastChild.remove();
+            scoreBoardUi.posWrapperParent.lastChild.remove();
+    
         };
 
         createScoreElements(posArrayCreate());
     },
+
+    //Removes scoreboard elements
+    scoreBoardRemove: function(){
+        for(let i = 0; i < playerNum; i++){
+            this.posWrapperParent.lastChild.remove();
+        }
+    },
+
+};
+
+//Returns naming for player objects
+function playerName(playerNum) {
+    return `player-${playerNum}`
+};
+
+function rollDice(){
+    //Create a random number
+    function randNum(highestNum){
+        const randVal = Math.floor(Math.random() * highestNum + 1);
+        return randVal;
+    };
+
+    let diceValue = randNum(6);
+    diceImg.changeImg(diceValue);
+
+    //Changes the player or Adds diceValue to activePlayers currentScore
+    if(diceValue === 1){
+        activePlayer.changeActive();
+    } else {
+        activePlayer.addCurrentScore(diceValue);
+    };   
 };
 
 //Called when games win condition is met - Sets the UI into endState + creates a score board
 function winState() {
-
     gameStateUi.endState();
-    scoreBoardUi.scoreBoard();
-
+    scoreBoardUi.scoreBoardCreate();
 };
 
 //Start Panel button clicks
@@ -456,6 +462,7 @@ gamePlayElementButtons.btnHold.addEventListener("click", function() {
 
 endPanelUi.btnReset.addEventListener("click", function (){
     console.log("Reset Clicked")
+    scoreBoardUi.scoreBoardRemove();
 });
 
 endPanelUi.btnRestart.addEventListener("click", function (){
