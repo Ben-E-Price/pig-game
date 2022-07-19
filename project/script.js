@@ -67,6 +67,7 @@ let playersCont = {
             let currentPlayer = playerName(i);
             this[currentPlayer].playerCurrentScore = 0;
             this[currentPlayer].playerTotalScore = 0;
+            this[currentPlayer].uiPlayerOverallScore.textContent = 0;
         };
     },
 };
@@ -450,6 +451,13 @@ function winState() {
     scoreBoardUi.scoreBoardCreate();
 };
 
+//Resets scores and UI
+function restartGame() {
+    scoreBoardUi.scoreBoardRemove();
+    playersCont.resetPlayers();
+    gameStateUi.gamePlayState();
+};
+
 //Start Panel button clicks
 startPanelUi.decreaseButton.addEventListener("click", playerNumDisplay);
 startPanelUi.increaseButton.addEventListener("click", playerNumDisplay);
@@ -470,11 +478,7 @@ gamePlayElementButtons.btnHold.addEventListener("click", function() {
 });
 
 endPanelUi.btnReset.addEventListener("click", function (){
-    scoreBoardUi.scoreBoardRemove();
-    playersCont.resetPlayers();
-    console.log("Reset Clicked", playersCont)
+
 });
 
-endPanelUi.btnRestart.addEventListener("click", function (){
-    console.log("Restart Clicked")
-});
+endPanelUi.btnRestart.addEventListener("click", restartGame);
