@@ -315,13 +315,10 @@ function rollDice(){
     };   
 };
 
-//Called when games win condition is met - Sets the UI into endState + creates a score board
-function winState() {
-
-    gameStateUi.endState();
+const scoreBoardUi = {
 
     //Creates UI scoreboard, displaying players in order of finishing position
-    function scoreBoard() {
+    scoreBoard: function() {
 
         //Create a sorted array of player scores + names
         function posArrayCreate() {
@@ -427,9 +424,14 @@ function winState() {
         };
 
         createScoreElements(posArrayCreate());
-    };
+    },
+};
 
-    scoreBoard();
+//Called when games win condition is met - Sets the UI into endState + creates a score board
+function winState() {
+
+    gameStateUi.endState();
+    scoreBoardUi.scoreBoard();
 
 };
 
