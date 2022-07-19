@@ -60,6 +60,15 @@ let playersCont = {
         //Removes the temp object after player objects are created
         delete this.clonePlayer;
     },
+
+    //Resets players score values
+    resetPlayers: function(){
+        for(let i = 0; i < playerNum; i++){
+            let currentPlayer = playerName(i);
+            this[currentPlayer].playerCurrentScore = 0;
+            this[currentPlayer].playerTotalScore = 0;
+        };
+    },
 };
 
 //Contains all start panel UI elements
@@ -461,8 +470,9 @@ gamePlayElementButtons.btnHold.addEventListener("click", function() {
 });
 
 endPanelUi.btnReset.addEventListener("click", function (){
-    console.log("Reset Clicked")
     scoreBoardUi.scoreBoardRemove();
+    playersCont.resetPlayers();
+    console.log("Reset Clicked", playersCont)
 });
 
 endPanelUi.btnRestart.addEventListener("click", function (){
