@@ -57,8 +57,6 @@ let playersCont = {
 
         //Removes inital player UI element
         userPanelElement.remove();
-        //Removes the temp object after player objects are created
-        delete this.clonePlayer;
     },
 
     //Resets players score values
@@ -68,6 +66,14 @@ let playersCont = {
             this[currentPlayer].playerCurrentScore = 0;
             this[currentPlayer].playerTotalScore = 0;
             this[currentPlayer].uiPlayerOverallScore.textContent = 0;
+        };
+    },
+
+    //Deletes all player objects
+    removePlayers: function() {
+        for(let i = 0; i < playerNum; i++){
+            let currentPlayer = playerName(i);
+            delete this[currentPlayer];
         };
     },
 };
@@ -478,7 +484,8 @@ gamePlayElementButtons.btnHold.addEventListener("click", function() {
 });
 
 endPanelUi.btnReset.addEventListener("click", function (){
-
+    playersCont.removePlayers();
+    console.log(playersCont)
 });
 
 endPanelUi.btnRestart.addEventListener("click", restartGame);
