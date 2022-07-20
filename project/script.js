@@ -457,11 +457,18 @@ function winState() {
     scoreBoardUi.scoreBoardCreate();
 };
 
-//Resets scores and UI
+//Resets scores and UI - Restarts the game with the same number of players
 function restartGame() {
     scoreBoardUi.scoreBoardRemove();
     playersCont.resetPlayers();
     gameStateUi.gamePlayState();
+};
+
+//Starts a new game - Removes all player objects - Allows a new number of players to be created  
+function resetGame() {
+    scoreBoardUi.scoreBoardRemove();
+    playersCont.removePlayers();
+    gameStateUi.startState();
 };
 
 //Start Panel button clicks
@@ -483,9 +490,6 @@ gamePlayElementButtons.btnHold.addEventListener("click", function() {
     activePlayer.addTotalScore();
 });
 
-endPanelUi.btnReset.addEventListener("click", function (){
-    playersCont.removePlayers();
-    console.log(playersCont)
-});
+endPanelUi.btnReset.addEventListener("click", resetGame);
 
 endPanelUi.btnRestart.addEventListener("click", restartGame);
