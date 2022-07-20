@@ -56,7 +56,23 @@ let playersCont = {
         };
 
         //Removes inital player UI element
-        userPanelElement.remove();
+        this.userPanelVis.setHidden();
+    },
+
+
+    userPanelVis: {
+        visible: "dis-flex-col",
+        hidden: "hidden",
+
+        setHidden: function(){
+            userPanelElement.classList.remove(this.visible);
+            userPanelElement.classList.add(this.hidden);
+        },
+
+        setVisible: function(){
+            userPanelElement.classList.remove(this.hidden);
+            userPanelElement.classList.add(this.visible);
+        },
     },
 
     //Resets players score values
@@ -73,8 +89,10 @@ let playersCont = {
     removePlayers: function() {
         for(let i = 0; i < playerNum; i++){
             let currentPlayer = playerName(i);
+            this[currentPlayer].playerPanel.remove();
             delete this[currentPlayer];
         };
+        this.userPanelVis.setVisible();
     },
 };
 
