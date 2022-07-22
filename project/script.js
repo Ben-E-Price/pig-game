@@ -439,7 +439,7 @@ const scoreBoardUi = {
 
     //Removes scoreboard elements
     scoreBoardRemove: function(){
-        for(let i = 0; i < playerNum; i++){
+        for(let i = 0; i < playerNum - 1; i++){
             this.posWrapperParent.lastChild.remove();
         }
     },
