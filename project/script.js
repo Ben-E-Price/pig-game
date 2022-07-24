@@ -228,37 +228,10 @@ function playerNumDisplay(event){
 //UI dice images
 const diceImg = {
     imgElement: document.getElementById("dice-img"),
-    img1: "dice-1.png",
-    img2: "dice-2.png",
-    img3: "dice-3.png",
-    img4: "dice-4.png",
-    img5: "dice-5.png",
-    img6: "dice-6.png",
 
     //Changes img based on numInput
     changeImg: function(numInput){
-        switch(numInput){
-            case 1:
-                this.imgElement.src = this.img1;
-                break;
-            case 2:
-                this.imgElement.src = this.img2;
-                break;
-            case 3:
-                this.imgElement.src = this.img3;
-                break;
-            case 4:
-                this.imgElement.src = this.img4;
-                break;
-            case 5:
-                this.imgElement.src = this.img5;
-                break;
-            case 6:
-                this.imgElement.src = this.img6;
-                break;
-            default:
-                console.log("error selecting img");
-        };
+        return this.imgElement.src = `dice-${numInput}.png`
     },
 };
 
