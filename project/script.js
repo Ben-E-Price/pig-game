@@ -473,9 +473,7 @@ startPanelUi.startButton.addEventListener("click", function(){
     console.log(playersCont)//player objects debugging
 });
 
-gamePlayElementButtons.btnDiceRoll.addEventListener("click", function(){
-    rollDice();
-});
+gamePlayElementButtons.btnDiceRoll.addEventListener("click", rollDice);
 
 gamePlayElementButtons.btnHold.addEventListener("click", function() {
     activePlayer.addTotalScore();
