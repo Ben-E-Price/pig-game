@@ -79,6 +79,7 @@ button {
 .player-select-panel {
   width: fit-content;
   align-items: center;
+  margin-top: 25px;
 }
 
 .bottom-wrapper {
@@ -98,6 +99,19 @@ button {
 #start-btn {
   margin: 10px;
 }
+
+#rules {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+  border: 1px solid white;
+  align-self: flex-end;
+
+  justify-content: center;
+  align-items: center;
+}
+
 /* user panels */
 .user-panel {
  flex: 1 1 auto;
