@@ -112,6 +112,12 @@ button {
   align-items: center;
 }
 
+#rules:hover{ 
+  transition-duration: 300ms;
+  background: none;
+  background-color: white;
+}
+
 /* user panels */
 .user-panel {
  flex: 1 1 auto;
