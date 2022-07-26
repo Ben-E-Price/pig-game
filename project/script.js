@@ -419,6 +419,10 @@ const scoreBoardUi = {
 
 };
 
+const hoverElements = {
+    elements: document.getElementsByClassName("hover-el"),
+};
+
 //Returns naming for player objects
 function playerName(playerNum) {
     return `player-${playerNum}`
@@ -482,3 +486,14 @@ gamePlayElementButtons.btnHold.addEventListener("click", function() {
 endPanelUi.btnReset.addEventListener("click", resetGame);
 
 endPanelUi.btnRestart.addEventListener("click", restartGame);
+
+for(let i = 0; i < hoverElements.elements.length; i++){
+    hoverElements.elements[i].addEventListener("mouseover", function(event){
+        console.log(event)
+    });
+
+    hoverElements.elements[i].addEventListener("mouseout", function(event){
+        console.log(event)
+    });
+};
+
