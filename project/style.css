@@ -101,9 +101,10 @@ button {
 }
 
 #rules {
+  --rules-size: 25px;
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: var(--rules-size);
+  height: var(--rules-size);
   border-radius: 20px;
   border: 1px solid white;
   align-self: flex-end;
@@ -116,6 +117,19 @@ button {
   transition-duration: 300ms;
   background: none;
   background-color: white;
+}
+
+#rules-wrapper {
+  width: 400px;
+  height: fit-content;
+  background-color: aqua;
+  position: absolute;
+  top: calc(var(--rules-size) + 10px);
+  padding: 25px;
+}
+
+.pop-text{
+  font-size: 15px;
 }
 
 /* user panels */

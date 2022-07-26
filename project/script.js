@@ -419,8 +419,13 @@ const scoreBoardUi = {
 
 };
 
+//
 const hoverElements = {
-    elements: document.getElementsByClassName("hover-el"),
+    elements: document.getElementsByClassName("hover-el-parent"),
+
+    popOver: function(event){
+        console.log(event)
+    }
 };
 
 //Returns naming for player objects
@@ -489,11 +494,11 @@ endPanelUi.btnRestart.addEventListener("click", restartGame);
 
 for(let i = 0; i < hoverElements.elements.length; i++){
     hoverElements.elements[i].addEventListener("mouseover", function(event){
-        console.log(event)
+        hoverElements.popOver(event);
     });
 
     hoverElements.elements[i].addEventListener("mouseout", function(event){
-        console.log(event)
+        hoverElements.popOver(event);
     });
 };
 
