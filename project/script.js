@@ -419,15 +419,6 @@ const scoreBoardUi = {
 
 };
 
-//
-const hoverElements = {
-    elements: document.getElementsByClassName("hover-el-parent"),
-
-    popOver: function(event){
-        console.log(event)
-    }
-};
-
 //Returns naming for player objects
 function playerName(playerNum) {
     return `player-${playerNum}`
@@ -492,13 +483,32 @@ endPanelUi.btnReset.addEventListener("click", resetGame);
 
 endPanelUi.btnRestart.addEventListener("click", restartGame);
 
+//
+const hoverElements = {
+    elements: document.getElementsByClassName("hover-el-parent"),
+
+    popOver: function(event, mouseover, delayTime){
+        delayTime *= 1000;
+        const childElement = event.target.firstElementChild;
+        
+        //Toggles dis-flex class on popover element
+        function toggleDis(childElement){
+            childElement.classList.toggle("dis-flex");
+        };
+
+        toggleDis(childElement);
+
+        //TODO Add display delay timer
+    },
+};
+
 for(let i = 0; i < hoverElements.elements.length; i++){
     hoverElements.elements[i].addEventListener("mouseover", function(event){
-        hoverElements.popOver(event);
+        hoverElements.popOver(event, true, 1);
     });
 
     hoverElements.elements[i].addEventListener("mouseout", function(event){
-        hoverElements.popOver(event);
+        hoverElements.popOver(event, false, 0.1);
     });
 };
 
