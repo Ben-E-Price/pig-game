@@ -419,6 +419,29 @@ const scoreBoardUi = {
 
 };
 
+//Contians popover elements parenets
+const popoverElements = {
+    elements: document.getElementsByClassName("popover-el-parent"),
+
+    //Toggles display of the element passed in
+    popOver: function(event, delayTime){
+        delayTime *= 1000;
+        const childElement = event.target.firstElementChild;
+        
+        //Toggles dis-flex class on popover element
+        function toggleDis(childElement){
+            childElement.classList.toggle("dis-flex");
+        };
+
+        //Checks for mouseout event, Clears timer if true
+        if(event.type === "mouseout"){
+            clearTimeout(this.delayTimer);
+        };
+
+        this.delayTimer = setTimeout(function(){toggleDis(childElement)}, delayTime);
+    },
+};
+
 //Returns naming for player objects
 function playerName(playerNum) {
     return `player-${playerNum}`
@@ -483,37 +506,13 @@ endPanelUi.btnReset.addEventListener("click", resetGame);
 
 endPanelUi.btnRestart.addEventListener("click", restartGame);
 
-//
-const hoverElements = {
-    elements: document.getElementsByClassName("hover-el-parent"),
-
-    popOver: function(event, delayTime){
-        delayTime *= 1000;
-        const eventType = event.type;
-        const childElement = event.target.firstElementChild;
-        
-        //Toggles dis-flex class on popover element
-        function toggleDis(childElement){
-            childElement.classList.toggle("dis-flex");
-        };
-
-        //Checks for mouseout event, Clears timer if true
-        if(eventType === "mouseout"){
-            clearTimeout(this.delayTimer);
-        };
-
-        this.delayTimer = setTimeout(function(){toggleDis(childElement)}, delayTime);
-
-    },
-};
-
-for(let i = 0; i < hoverElements.elements.length; i++){
-    hoverElements.elements[i].addEventListener("mouseover", function(event){
-        hoverElements.popOver(event, 0.4);
+for(let i = 0; i < popoverElements.elements.length; i++){
+    popoverElements.elements[i].addEventListener("mouseover", function(event){
+        popoverElements.popOver(event, 0.4);
     });
 
-    hoverElements.elements[i].addEventListener("mouseout", function(event){
-        hoverElements.popOver(event, 0.2);
+    popoverElements.elements[i].addEventListener("mouseout", function(event){
+        popoverElements.popOver(event, 0.2);
     });
 };
 
