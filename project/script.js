@@ -419,26 +419,39 @@ const scoreBoardUi = {
 
 };
 
-//Contians popover elements parenets
+//Contians parents of popover elements, Contains popover display functionality
 const popoverElements = {
     elements: document.getElementsByClassName("popover-el-parent"),
 
-    //Toggles display of the element passed in
-    popOver: function(event, delayTime){
+    //Toggles display visiblity of the event elements, child element
+    popOver: function(event, delayTime) {
         delayTime *= 1000;
+        const eventType = event.type;
         const childElement = event.target.firstElementChild;
-        
-        //Toggles dis-flex class on popover element
-        function toggleDis(childElement){
-            childElement.classList.toggle("dis-flex");
+        const childClassList = childElement.classList;       
+
+        //Toggles childElements visibility after timer
+        function disTimer(childElement, delayTime) {
+
+            //Toggles dis-flex class on popover element
+            function toggleDis(){
+                childClassList.toggle("dis-flex");
+            };
+
+            //Creates a timer calling toggleDis
+            return setTimeout(function(){toggleDis(childElement)}, delayTime);
         };
 
-        //Checks for mouseout event, Clears timer if true
-        if(event.type === "mouseout"){
+        //Calls disTimer either on mouseover event or if child element is currently visible
+        if(eventType === "mouseover" || childClassList.contains("dis-flex")) {
+            this.delayTimer = disTimer(childElement, delayTime);
+        }
+
+        //Checks for mouseout event & if the element is hidden, Clears timer if true
+        if(eventType === "mouseout" && !childClassList.contains("dis-flex")) {
             clearTimeout(this.delayTimer);
         };
-
-        this.delayTimer = setTimeout(function(){toggleDis(childElement)}, delayTime);
+        
     },
 };
 

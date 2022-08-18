@@ -194,3 +194,7 @@ button {
   display: inline;
   padding-left: 10px;
 }
+
+.btn-pop-wrapper{
+  position: absolute;
+}
