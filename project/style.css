@@ -119,19 +119,6 @@ button {
   background-color: white;
 }
 
-#rules-wrapper {
-  width: 400px;
-  height: fit-content;
-  background-color: aqua;
-  position: absolute;
-  top: calc(var(--rules-size) + 10px);
-  padding: 25px;
-}
-
-.pop-text{
-  font-size: 15px;
-}
-
 /* user panels */
 .user-panel {
  flex: 1 1 auto;
@@ -186,6 +173,12 @@ button {
   align-items: center;
 }
 
+.btn{
+  --btn-width: 160px;
+  width: var(--btn-width);
+  padding: 10px;
+}
+
 #player-order-panel {
   width: 100%;
 }
@@ -195,6 +188,28 @@ button {
   padding-left: 10px;
 }
 
-.btn-pop-wrapper{
+/* pop-over elements */
+.popover-el{
   position: absolute;
+  width: max-content;
+}
+
+.popover-btn{
+  padding: 15px;
+  background-color: white;
+  border-radius: 15px;
+
+  transform: translate(calc(-50% + calc(var(--btn-width) / 2)));
+  bottom: -50px;
+}
+
+.pop-text{
+  font-size: 15px;
+}
+
+#rules-pop-wrapper {
+  width: 400px;
+  height: fit-content;
+  top: calc(var(--rules-size) + 10px);
+  padding: 25px;
 }
