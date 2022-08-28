@@ -16,13 +16,16 @@
 
             <div class="dis-flex popover-el-parent" id="rules">
               <div class="popover-el hidden" id="rules-pop-wrapper"> 
-                <p class="pop-text">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Vestibulum tincidunt dolor justo, eu tincidunt nisl tincidunt a.
-                  Maecenas blandit quis enim vitae fermentum. Pellentesque auctor
-                  vehicula augue vel scelerisque. Nam vitae blandit eros.
-                  Nunc imperdiet justo felis, nec semper lacus blandit sit amet. 
-                  Aenean mollis ex a lorem maximus, id. </p>
+
+                <ul>
+                  <li>Each player takes turns rolling the dice </li>
+                  <li>The value of the dice is added to the players current score.</li>
+                  <li>Using the hold button adds the current score to the players overall score, 
+                    However using the hold also passes the game to the next player</li>
+                  <li>If a player rolls a 1, The current score is lost and the next player takes their turn</li>
+                  <li>The first player to reach an overall score of 100 wins.</li>
+                </ul>
+
               </div>
               ?
             </div>
@@ -86,14 +89,14 @@
               <button class="popover-el-parent btn" id="restart-btn">
                 Restart Game
                 <div class="popover-el popover-btn hidden" id="restart-pop-wrapper"> 
-                  <p class="pop-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget. </p>
+                  <p class="pop-text"> Play a new round with the same number of players </p>
                 </div>
               </button>
 
               <button class="popover-el-parent btn" id="reset-btn">
                 Reset Game
                 <div class="popover-el popover-btn hidden" id="reset-pop-wrapper"> 
-                  <p class="pop-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget. </p>
+                  <p class="pop-text"> Select a new number of players before playing again </p>
                 </div>
 
               </button>
