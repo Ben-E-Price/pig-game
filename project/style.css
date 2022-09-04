@@ -192,11 +192,12 @@ button {
 .popover-el{
   position: absolute;
   width: max-content;
+  border-radius: 15px;
+  background-color: #5c78b9;
 }
 
 .popover-btn{
   padding: 15px;
-  background-color: white;
   border-radius: 15px;
 
   transform: translate(calc(-50% + calc(var(--btn-width) / 2)));
@@ -208,8 +209,13 @@ button {
 }
 
 #rules-pop-wrapper {
-  width: 400px;
+  width: 900px;
   height: fit-content;
   top: calc(var(--rules-size) + 10px);
   padding: 25px;
+  flex-wrap: wrap;
+}
+
+#rules-list li{
+  padding-top: 10px;
 }
