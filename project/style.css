@@ -1,25 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
-
 /*global element styling*/
 html {
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
+  /*color variable decalartions*/
+  --prime-mid: #00acc1;
+  --prime-light: #5ddef4;
+  --prime-dark: #007c91;
 }
 
 * {
   box-sizing: inherit;
   margin: 0px;
+  color: white;
+}
+
+body {
+  background-image: linear-gradient(to right, var(--prime-dark), var(--prime-light));
 }
 
 main {
   display: flex;
   justify-content: center;
   align-content: center;
-}
-
-body {
-  background-image: linear-gradient(to top, #486091, #5c78b9);
 }
 
 h1 {
@@ -36,9 +40,15 @@ p {
 
 button {
   font-size: 15pt;
-  border-radius: 15px;
   font-size: 15pt;
-  background-color: #5c78b9;
+  border-radius: 15px;
+  border-style: none;
+  background-color: var(--prime-light);
+}
+
+button:hover{
+  transition: 500ms;
+  background-color: var(--prime-dark);
 }
 
 /*global display classes*/
@@ -69,7 +79,7 @@ button {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  background-color: #37548d;
+  background-color: var(--prime-mid);
   border-radius: 20px;
   padding: 20px;
 }
@@ -116,7 +126,7 @@ button {
 #rules:hover{ 
   transition-duration: 300ms;
   background: none;
-  background-color: white;
+  background-color: var(--prime-dark);
 }
 
 /* user panels */
@@ -126,14 +136,14 @@ button {
 
  border-radius: 20px;
  padding: 30px;
- background-color: rgba(256, 256, 256, .15);
+ background-color: rgba(256, 256, 256, .2);
  width: calc(50% - var(--gap-size));
 }
 
 .current-score-panel {
   padding: 16px;
   margin-top: 100px;
-  background-color: #486091;
+  background-color: var(--prime-mid);
   border-radius: 10px;
 
   align-items: center;
@@ -167,7 +177,7 @@ button {
   left: 50%;
   transform: translate(-50%);
   gap: 50px;
-  background-color: #37548d;
+  background-color: var(--prime-mid);
   padding: 15px;
   border-radius: 15px;
   align-items: center;
@@ -193,7 +203,7 @@ button {
   position: absolute;
   width: max-content;
   border-radius: 15px;
-  background-color: #5c78b9;
+  background-color: var(--prime-dark);
 }
 
 .popover-btn{
