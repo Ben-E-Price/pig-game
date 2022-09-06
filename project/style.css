@@ -107,7 +107,10 @@ button:hover{
 }
 
 #start-btn {
-  margin: 10px;
+  margin-top: 15px;
+  width: 200px;
+  align-self: center;
+  padding: 5px 0px;
 }
 
 #rules {
