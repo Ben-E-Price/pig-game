@@ -186,10 +186,14 @@ button:hover{
   align-items: center;
 }
 
+#end-btns-panel {
+  gap: 15px;
+}
+
 .btn{
   --btn-width: 160px;
   width: var(--btn-width);
-  padding: 10px;
+  padding: 5px 0px;
 }
 
 #player-order-panel {
