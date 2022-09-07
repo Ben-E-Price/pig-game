@@ -8,12 +8,15 @@ html {
   --prime-mid: #00acc1;
   --prime-light: #5ddef4;
   --prime-dark: #007c91;
+
+  --small-text-shadow: 2px 2px 2px rgb(15, 15, 15);
 }
 
 * {
   box-sizing: inherit;
   margin: 0px;
   color: white;
+  text-shadow: 3px 3px 10px rgb(15, 15, 15);
 }
 
 body {
@@ -36,6 +39,7 @@ h2 {
 
 p {
   font-size: 20pt;
+  text-shadow: var(--small-text-shadow)
 }
 
 button {
@@ -44,6 +48,7 @@ button {
   border-radius: 15px;
   border-style: none;
   background-color: var(--prime-light);
+  text-shadow: var(--small-text-shadow);
 }
 
 button:hover{
