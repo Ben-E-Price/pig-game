@@ -258,10 +258,12 @@ let activePlayer = {
         }
 
         this.playerObject = playersCont[this.name = playerName(this.activePlayerNum)];
+        this.activeUIToggle(this.playerObject);
     },
 
     //Returns the current player object back to playerCont
     returnPlayer: function() {
+        this.activeUIToggle(this.playerObject);
         playersCont[this.name] = this.playerObject;
     },
 
@@ -296,6 +298,11 @@ let activePlayer = {
         };
 
         this.changeActive();
+    },
+
+    //Toggles "active-player" on the current active players UI element
+    activeUIToggle: function(playerObject){
+        playerObject.playerPanel.classList.toggle("active-player");
     },
 };
 
@@ -434,7 +441,7 @@ const popoverElements = {
         function disTimer(childElement, delayTime) {
 
             //Toggles dis-flex class on popover element
-            function toggleDis(){
+            function toggleDis() {
                 childClassList.toggle("dis-flex");
             };
 
@@ -445,7 +452,7 @@ const popoverElements = {
         //Calls disTimer either on mouseover event or if child element is currently visible
         if(eventType === "mouseover" || childClassList.contains("dis-flex")) {
             this.delayTimer = disTimer(childElement, delayTime);
-        }
+        };
 
         //Checks for mouseout event & if the element is hidden, Clears timer if true
         if(eventType === "mouseout" && !childClassList.contains("dis-flex")) {

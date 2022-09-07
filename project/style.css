@@ -139,7 +139,7 @@ button:hover{
 
  border-radius: 20px;
  padding: 30px;
- background-color: rgba(256, 256, 256, .2);
+ background-color: rgba(256, 256, 256, .1);
  width: calc(50% - var(--gap-size));
 }
 
@@ -150,6 +150,10 @@ button:hover{
   border-radius: 10px;
 
   align-items: center;
+}
+
+.active-player{
+  background-color: rgba(256, 256, 256, .35);
 }
 
 /* game play elements */
