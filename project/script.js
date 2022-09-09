@@ -80,11 +80,11 @@ let playersCont = {
         for(let i = 0; i < playerNum; i++){
             let currentPlayer = playerName(i);
 
-            this[currentPlayer].playerPanel.classList.remove("active-player");
             this[currentPlayer].playerCurrentScore = 0;
             this[currentPlayer].playerTotalScore = 0;
             this[currentPlayer].uiPlayerOverallScore.textContent = 0;
-            activePlayer.activePlayerNum = 0;
+            this[currentPlayer].playerPanel.classList.remove("active-player");
+            activePlayer.resetActive();
         };
     },
 
@@ -259,7 +259,7 @@ let activePlayer = {
         } else {
             this.activePlayerNum ++;
         }
-
+        console.log(this.activePlayerNum)
         this.playerObject = playersCont[this.name = playerName(this.activePlayerNum)];
         this.activeUIToggle();
     },
@@ -274,6 +274,11 @@ let activePlayer = {
     resetCurrentScore: function() {
         this.playerObject.playerCurrentScore = 0;
         this.playerObject.uiPlayerCurrentScore.textContent = this.playerObject.playerCurrentScore;
+    },
+
+    resetActive: function() {
+        this.activePlayerNum = -1;
+        this.setActivePlayer();
     },
 
     //Adds value to players current score, Updates the UI with current score
@@ -359,7 +364,7 @@ const scoreBoardUi = {
                         currentHighestName = "";
                     };
 
-                    console.log(posArray)//Debug array check
+                    // console.log(posArray)//Debug array check
                 };
             };
             
@@ -516,7 +521,7 @@ startPanelUi.startButton.addEventListener("click", function(){
     playersCont.createPlayer(playerNum);
     gameStateUi.gamePlayState();
     activePlayer.setActivePlayer(true);
-    console.log(playersCont)//player objects debugging
+    // console.log(playersCont)//player objects debugging
 });
 
 gamePlayElementButtons.btnDiceRoll.addEventListener("click", rollDice);
