@@ -79,6 +79,8 @@ let playersCont = {
     resetPlayers: function(){
         for(let i = 0; i < playerNum; i++){
             let currentPlayer = playerName(i);
+
+            this[currentPlayer].playerPanel.classList.remove("active-player");
             this[currentPlayer].playerCurrentScore = 0;
             this[currentPlayer].playerTotalScore = 0;
             this[currentPlayer].uiPlayerOverallScore.textContent = 0;
@@ -258,12 +260,12 @@ let activePlayer = {
         }
 
         this.playerObject = playersCont[this.name = playerName(this.activePlayerNum)];
-        this.activeUIToggle(this.playerObject);
+        this.activeUIToggle();
     },
 
     //Returns the current player object back to playerCont
     returnPlayer: function() {
-        this.activeUIToggle(this.playerObject);
+        this.activeUIToggle();
         playersCont[this.name] = this.playerObject;
     },
 
@@ -301,8 +303,8 @@ let activePlayer = {
     },
 
     //Toggles "active-player" on the current active players UI element
-    activeUIToggle: function(playerObject){
-        playerObject.playerPanel.classList.toggle("active-player");
+    activeUIToggle: function(){
+        this.playerObject.playerPanel.classList.toggle(activePlayerClass);
     },
 };
 
