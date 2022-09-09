@@ -1,7 +1,7 @@
 'use strict';
 let playerNum = 2;
 const maxPlayers = 4;//Sets the maximum amount of players 
-const winningScore = 5;//Controls the score requried to win
+const winningScore = 20;//Controls the score requried to win
 const userPanelElement = document.getElementsByClassName("user-panel")[0];
 
 
@@ -84,6 +84,7 @@ let playersCont = {
             this[currentPlayer].playerCurrentScore = 0;
             this[currentPlayer].playerTotalScore = 0;
             this[currentPlayer].uiPlayerOverallScore.textContent = 0;
+            activePlayer.activePlayerNum = 0;
         };
     },
 
@@ -295,8 +296,8 @@ let activePlayer = {
 
         //Checks if the player has met the winning conditions.
         if(this.playerObject.playerTotalScore >= winningScore){
-            winState();
             this.returnPlayer();
+            winState();
         };
 
         this.changeActive();
@@ -304,7 +305,7 @@ let activePlayer = {
 
     //Toggles "active-player" on the current active players UI element
     activeUIToggle: function(){
-        this.playerObject.playerPanel.classList.toggle(activePlayerClass);
+        this.playerObject.playerPanel.classList.toggle("active-player");
     },
 };
 
