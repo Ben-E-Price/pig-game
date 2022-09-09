@@ -77,14 +77,14 @@ let playersCont = {
 
     //Resets players score values
     resetPlayers: function(){
+        activePlayer.resetActive();
+
         for(let i = 0; i < playerNum; i++){
             let currentPlayer = playerName(i);
 
             this[currentPlayer].playerCurrentScore = 0;
             this[currentPlayer].playerTotalScore = 0;
             this[currentPlayer].uiPlayerOverallScore.textContent = 0;
-            this[currentPlayer].playerPanel.classList.remove("active-player");
-            activePlayer.resetActive();
         };
     },
 
@@ -259,7 +259,7 @@ let activePlayer = {
         } else {
             this.activePlayerNum ++;
         }
-        console.log(this.activePlayerNum)
+        
         this.playerObject = playersCont[this.name = playerName(this.activePlayerNum)];
         this.activeUIToggle();
     },
@@ -276,6 +276,7 @@ let activePlayer = {
         this.playerObject.uiPlayerCurrentScore.textContent = this.playerObject.playerCurrentScore;
     },
 
+    //Resets the active player, back to player 1
     resetActive: function() {
         this.activePlayerNum = -1;
         this.setActivePlayer();
@@ -303,9 +304,11 @@ let activePlayer = {
         if(this.playerObject.playerTotalScore >= winningScore){
             this.returnPlayer();
             winState();
+        } else {
+            this.changeActive();
         };
 
-        this.changeActive();
+        
     },
 
     //Toggles "active-player" on the current active players UI element
